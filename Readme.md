@@ -89,13 +89,11 @@ Ventas.csv ───────────▶ Detalle_Ventas.csv
 ```
 📦 AnalisisVentas
  ┣ 📂 data/                ← Archivos CSV originales
- ┣ 📂 proyecto_demo2/
+ ┣ 📂 proyecto_Archivos_definitivos/
  ┃ ┣ 📂 plots/             ← Gráficos generados (PNG)
  ┃ ┣ 📂 tablas/            ← Tablas descriptivas (CSV)
- ┃ ┣ 📜 analisis_completo_demo2.ipynb
- ┃ ┣ 📜 documentacion_proyecto.md
- ┃ ┣ 📜 analisis_ventas.py
- ┃ ┗ 📜 resumen_demo.pptx
+ ┃ ┣ 📂 imagenes/          ← Imagenes de Streamlit
+ ┃ ┗ 📜 analisis_completo_demo2.ipynb
  ┣ 📜 app.py               ← App Streamlit interactiva
  ┣ 📜 README.md            ← Este documento
  ┗ 📜 requirements.txt     ← Dependencias del entorno
@@ -128,12 +126,12 @@ La app permite:
 
 | Paso | Descripción | Vista |
 |------|--------------|-------|
-| 1️⃣ | Diagnóstico de datos originales | ![Step1](https://imgur.com/placeholder1.png) |
-| 2️⃣ | Limpieza automática y exportación | ![Step2](https://imgur.com/placeholder2.png) |
-| 3️⃣ | Análisis descriptivo y gráficos | ![Step3](https://imgur.com/placeholder3.png) |
-| 4️⃣ | Conclusiones finales descargables | ![Step4](https://imgur.com/placeholder4.png) |
+| 1️⃣ | Diagnóstico de datos originales | ![Step1](proyecto_Archivos_definitivos/imagenes/DiagnosticoDtOrigin.png) |
+| 2️⃣ | Limpieza automática y exportación | ![Step2](proyecto_Archivos_definitivos/imagenes/Limpieza.png) |
+| 3️⃣ | Análisis descriptivo y gráficos | ![Step3](proyecto_Archivos_definitivos/imagenes/Analisis.png) |
+| 4️⃣ | Conclusiones finales descargables | ![Step4](proyecto_Archivos_definitivos/imagenes/conclusiones.png) |
 
-> 🔧 *Las imágenes pueden personalizarse con capturas reales de tu entorno Streamlit.*
+> 🔧 *Las imágenes son capturas reales Streamlit.*
 
 ---
 
@@ -144,7 +142,7 @@ El proyecto combina **ciencia de datos aplicada, estadística descriptiva avanza
 - Interpretación estadística y análisis exploratorio.  
 - Comunicación visual de resultados mediante herramientas interactivas.
 
-> 💼 Ideal para portfolio profesional, docencia o presentaciones académicas.
+
 
 ---
 
