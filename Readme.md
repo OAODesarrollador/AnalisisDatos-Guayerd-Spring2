@@ -64,10 +64,10 @@ Ventas.csv ───────────▶ Detalle_Ventas.csv
 
 | Tipo de gráfico | Propósito | Ejemplo |
 |-----------------|------------|----------|
-| **Histograma** | Distribución del total por ticket | ![Histograma](proyecto_demo2/plots/hist_total_ticket.png) |
-| **Boxplot** | Dispersión e outliers por categoría | ![Boxplot](proyecto_demo2/plots/box_importe_categoria.png) |
-| **Scatterplot** | Relación cantidad–precio unitario | ![Scatter](proyecto_demo2/plots/scatter_cantidad_precio.png) |
-| **Barras** | Ingresos por categoría | ![Barras](proyecto_demo2/plots/bar_ingresos_categoria.png) |
+| **Histograma** | Distribución del total por ticket | ![Histograma](proyecto_Archivos_definitivos/plots/hist_total_ticket.png) |
+| **Boxplot** | Dispersión e outliers por categoría | ![Boxplot](proyecto_Archivos_definitivos/plots/box_importe_categoria.png) |
+| **Scatterplot** | Relación cantidad–precio unitario | ![Scatter](proyecto_Archivos_definitivos/plots/scatter_cantidad_precio.png) |
+| **Barras** | Ingresos por categoría | ![Barras](proyecto_Archivos_definitivos/plots/bar_ingresos_categoria.png) |
 
 ---
 
