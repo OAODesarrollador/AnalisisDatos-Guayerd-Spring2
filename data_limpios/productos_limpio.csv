@@ -1,0 +1,121 @@
+id_producto,nombre_producto,categoria,precio_unitario
+1,Coca Cola 1.5L,Alimentos,2347.0
+2,Pepsi 1.5L,Limpieza,4973.0
+3,Sprite 1.5L,Alimentos,4964.0
+4,Fanta Naranja 1.5L,Limpieza,2033.0
+5,Agua Mineral 500ml,Alimentos,4777.0
+6,Jugo de Naranja 1L,Limpieza,4170.0
+7,Jugo de Manzana 1L,Alimentos,3269.0
+8,Energética Nitro 500ml,Limpieza,4218.0
+9,Yerba Mate Suave 1kg,Alimentos,3878.0
+10,Yerba Mate Intensa 1kg,Limpieza,4883.0
+11,Café Molido 250g,Alimentos,2053.0
+12,Té Negro 20 saquitos,Limpieza,570.0
+13,Té Verde 20 saquitos,Alimentos,2383.0
+14,Leche Entera 1L,Limpieza,1723.0
+15,Leche Descremada 1L,Alimentos,2538.0
+16,Yogur Natural 200g,Limpieza,4613.0
+17,Queso Cremoso 500g,Alimentos,4834.0
+18,Queso Rallado 150g,Limpieza,3444.0
+19,Manteca 200g,Alimentos,3251.0
+20,Pan Lactal Blanco,Limpieza,1571.0
+21,Pan Lactal Integral,Alimentos,272.0
+22,Medialunas de Manteca,Limpieza,2069.0
+23,Bizcochos Salados,Alimentos,2380.0
+24,Galletitas Chocolate,Limpieza,1305.0
+25,Galletitas Vainilla,Alimentos,4015.0
+26,Alfajor Triple,Limpieza,1001.0
+27,Alfajor Simple,Alimentos,2502.0
+28,Papas Fritas Clásicas 100g,Limpieza,936.0
+29,Papas Fritas Onduladas 100g,Alimentos,1868.0
+30,Maní Salado 200g,Limpieza,4875.0
+31,Mix de Frutos Secos 200g,Alimentos,3409.0
+32,Chocolate Amargo 100g,Limpieza,2234.0
+33,Chocolate con Leche 100g,Alimentos,1255.0
+34,Turrón 50g,Limpieza,503.0
+35,Barrita de Cereal 30g,Alimentos,4430.0
+36,Dulce de Leche 400g,Limpieza,2559.0
+37,Mermelada de Durazno 400g,Alimentos,3196.0
+38,Mermelada de Frutilla 400g,Limpieza,1584.0
+39,Helado Vainilla 1L,Alimentos,469.0
+40,Helado Chocolate 1L,Limpieza,1215.0
+41,Aceite de Girasol 1L,Alimentos,860.0
+42,Vinagre de Alcohol 500ml,Limpieza,1195.0
+43,Salsa de Tomate 500g,Alimentos,887.0
+44,Arroz Largo Fino 1kg,Limpieza,2979.0
+45,Fideos Spaghetti 500g,Alimentos,745.0
+46,Lentejas Secas 500g,Limpieza,3036.0
+47,Garbanzos 500g,Alimentos,2939.0
+48,Porotos Negros 500g,Limpieza,4462.0
+49,Harina de Trigo 1kg,Alimentos,2512.0
+50,Azúcar 1kg,Limpieza,727.0
+51,Sal Fina 500g,Alimentos,1745.0
+52,Detergente Líquido 750ml,Limpieza,2582.0
+53,Lavandina 1L,Alimentos,1664.0
+54,Jabón de Tocador,Limpieza,1592.0
+55,Shampoo 400ml,Alimentos,1407.0
+56,Papel Higiénico x4,Limpieza,2532.0
+57,Servilletas x100,Alimentos,4520.0
+58,Caramelos Masticables,Limpieza,4752.0
+59,Chicle Menta,Alimentos,3612.0
+60,Chupetín,Limpieza,4647.0
+61,Miel Pura 250g,Alimentos,4982.0
+62,Stevia 100 sobres,Limpieza,3848.0
+63,Granola 250g,Alimentos,4337.0
+64,Avena Instantánea 250g,Limpieza,3953.0
+65,Cerveza Rubia 1L,Alimentos,2423.0
+66,Cerveza Negra 1L,Limpieza,1533.0
+67,Vino Tinto Malbec 750ml,Alimentos,4719.0
+68,Vino Blanco 750ml,Limpieza,2684.0
+69,Sidra 750ml,Alimentos,744.0
+70,Fernet 750ml,Limpieza,4061.0
+71,Vodka 700ml,Alimentos,508.0
+72,Ron 700ml,Limpieza,3876.0
+73,Gin 700ml,Alimentos,1561.0
+74,Whisky 750ml,Limpieza,2953.0
+75,Licor de Café 700ml,Alimentos,3204.0
+76,Pizza Congelada Muzzarella,Limpieza,4286.0
+77,Empanadas Congeladas,Alimentos,4778.0
+78,Verduras Congeladas Mix,Limpieza,4289.0
+79,Hamburguesas Congeladas x4,Alimentos,2420.0
+80,Helado de Frutilla 1L,Limpieza,1981.0
+81,Aceitunas Verdes 200g,Alimentos,2520.0
+82,Aceitunas Negras 200g,Limpieza,2394.0
+83,Queso Untable 190g,Alimentos,1830.0
+84,Queso Azul 150g,Limpieza,1645.0
+85,Jugo en Polvo Naranja,Alimentos,1856.0
+86,Jugo en Polvo Limón,Limpieza,4090.0
+87,Sopa Instantánea Pollo,Alimentos,1679.0
+88,Caldo Concentrado Carne,Limpieza,2570.0
+89,Caldo Concentrado Verdura,Alimentos,1003.0
+90,Toallas Húmedas x50,Limpieza,2902.0
+91,Desodorante Aerosol,Alimentos,4690.0
+92,Crema Dental 90g,Limpieza,2512.0
+93,Cepillo de Dientes,Alimentos,2142.0
+94,Hilo Dental,Limpieza,1418.0
+95,Mascarilla Capilar,Alimentos,1581.0
+96,Suavizante 1L,Limpieza,4920.0
+97,Limpiavidrios 500ml,Alimentos,872.0
+98,Desengrasante 500ml,Limpieza,2843.0
+99,Esponjas x3,Alimentos,2430.0
+100,Trapo de Piso,Limpieza,4854.0
+101,Pan Integral 500g,Alimentos,0.0
+102,Shampoo Anticaspa 400ml,Higiene,-1450.0
+103,Crema de Manos 100ml,nan,1890.0
+104,Desodorante Roll On,Higiene,
+105,Toallitas Desmaquillantes x25,Belleza,2150.0
+106,Agua Micelar 200ml,Belleza,999999.0
+107,Protector Solar FPS50,Belleza,4580.0
+108,Crema Dental Kids 90g,Higiene,1720.0
+109,Enjuague Bucal 250ml,Higiene,1980.0
+110,Pan Lactal Blanco,Alimentos,1571.0
+111,Pan Lactal Blanco,Alimentos,1571.0
+112,Barra de Cereal Chocolate,Alimentos,4430.0
+113,Barra de Cereal Chocolate,Snacks,4430.0
+114,Snack de Arroz 100g,Snacks,
+115,Snack de Arroz 100g,Snacks,0.0
+116,Agua Saborizada 500ml,Bebidas,3120.0
+117,Agua Saborizada 500ml,Bebidas,3120.0
+118,Agua Saborizada 500ml,Bebidas,
+119,Agua Saborizada 500ml,nan,3120.0
+120,Producto Fantasma,Electrónica,99999.0
