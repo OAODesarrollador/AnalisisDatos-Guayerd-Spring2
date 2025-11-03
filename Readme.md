@@ -140,7 +140,7 @@ Distribución del total por ticket
 
 **Desarrollado por:**  
 👨‍💻 **Oscar Alejandro Ortiz - Dev Studio™**  
-Desarrollador Full Stack | Científico de Datos | Educador Técnico  
+Desarrollador Full Stack | Científico de Datos 
 
 🔗 [LinkedIn](https://www.linkedin.com/in/oscar-alejandro-ortiz-desarrollador-fullstack)  
 💼 [GitHub](https://github.com/OAODesarrollador)  
@@ -150,5 +150,4 @@ Desarrollador Full Stack | Científico de Datos | Educador Técnico
 
 ---
 
-## 🧩 Licencia
-
+## 🎉 ¡Gracias por visitar mi proyecto  !
