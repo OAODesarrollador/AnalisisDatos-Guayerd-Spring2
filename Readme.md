@@ -1,153 +1,160 @@
-# 🧠 Análisis Descriptivo Profesional – Tienda Saludable / Dataset Demo
 
-![Python](https://img.shields.io/badge/Python-3.9→3.12-blue?logo=python&logoColor=white)
-![Streamlit](https://img.shields.io/badge/Framework-Streamlit-FF4B4B?logo=streamlit&logoColor=white)
-![Status](https://img.shields.io/badge/Estado-En%20Desarrollo%20Activo-success)
-![License](https://img.shields.io/badge/Licencia-MIT-lightgrey)
-![DataScience](https://img.shields.io/badge/Disciplina-Ciencia%20de%20Datos-orange?logo=anaconda)
+# 🧠 Análisis de Ventas — EDA + Streamlit + Ciencia de Datos Aplicada  
 
----
-
-## 🌍 Descripción General
-
-Este proyecto transforma un **análisis exploratorio de datos (EDA)** clásico —originalmente en un notebook Jupyter— en una **aplicación interactiva e intuitiva** construida con **Streamlit**.  
-El objetivo es mostrar cómo un flujo de análisis profesional puede ser presentado de forma **clara, visual y comprensible incluso para públicos no técnicos**, manteniendo el rigor estadístico.
-
-> 🎯 **Objetivo:** Convertir el proceso de limpieza, exploración y análisis descriptivo de datos en una experiencia visual, educativa y dinámica, donde cada gráfico cuenta una historia.
+![Banner](https://img.shields.io/badge/EDA-DataScience-blue?style=for-the-badge) 
+![Python](https://img.shields.io/badge/Python-3.10%2B-yellow?style=for-the-badge&logo=python) 
+![Pandas](https://img.shields.io/badge/Pandas-DataFrame-green?style=for-the-badge&logo=pandas)
+![Matplotlib](https://img.shields.io/badge/Matplotlib-Visualización-lightgrey?style=for-the-badge&logo=plotly)
+![Streamlit](https://img.shields.io/badge/Streamlit-App-red?style=for-the-badge&logo=streamlit)
 
 ---
 
-## 🧩 Características principales
-
-### 🟦 1. Carga de datos crudos
-- Lectura **robusta** de múltiples archivos CSV con detección automática de separadores y codificación (`utf-8`, `latin-1`).
-- Diagnóstico inicial con conteo de nulos, duplicados y tipos de datos.
-- Presentación visual tipo “panel de control”.
-
-### 🟨 2. Limpieza y normalización automática
-- Estandarización de nombres de columnas (sin tildes, espacios o mayúsculas).
-- Conversión automática de tipos (numéricos, fechas, strings).
-- Corrección de claves entre tablas (`id_venta`, `id_producto`, `id_cliente`).
-- Exportación de CSVs **limpios** en carpeta `data_limpios/`.
-
-### 🟩 3. Análisis descriptivo visual (EDA)
-Cuatro visualizaciones principales con interpretación explicativa desplegable:
-1. **Histograma** — Distribución del total por ticket.  
-2. **Boxplot** — Variabilidad de importe por categoría.  
-3. **Scatterplot** — Relación cantidad vs precio unitario.  
-4. **Gráfico de barras** — Ingresos totales por categoría.
-
-Cada gráfico incluye un panel “📘 Ver interpretación”, que explica con lenguaje **divulgativo** qué representa, por qué se usa y cómo se interpreta.
-
-### 🟥 4. Conclusiones automáticas
-- Generación automática de **conclusiones interpretadas**, redactadas con lenguaje profesional pero accesible.
-- Descarga directa del informe en formato `.txt`.
+### 🚀 Proyecto profesional de Análisis Exploratorio de Datos (EDA)  
+**Autor:** Oscar Ortiz Dev Studio™  
+**Lenguaje:** Python  
+**Frameworks:** Streamlit, Pandas, Matplotlib, NumPy  
+**Objetivo:** desarrollar un flujo de trabajo completo de limpieza, análisis estadístico y visualización descriptiva a partir de datos reales de ventas, clientes y productos.
 
 ---
 
-## 💡 Filosofía del proyecto
-
-> “La estadística no solo describe el mundo: **lo hace visible.**  
-> Esta aplicación busca que cada persona —sin importar su formación— pueda entender qué le están diciendo sus datos.”
-
-Diseñado como una herramienta de **alfabetización de datos (data literacy)** para PyMEs, estudiantes, y analistas que comienzan en el campo.
+## 🎯 Objetivo General
+El propósito de este proyecto es **demostrar un proceso profesional de Ciencia de Datos aplicada al análisis comercial**, integrando las etapas de:  
+- Carga y limpieza de datos.  
+- Preparación de un dataset analítico integrado.  
+- Análisis exploratorio y estadístico descriptivo.  
+- Visualizaciones explicativas y narrativa interpretativa.  
+- Conclusiones orientadas a la toma de decisiones.
 
 ---
 
-## ⚙️ Instalación y ejecución
+## ⚙️ Arquitectura del Proyecto
 
-### 🔧 Requisitos
-- Python 3.9 o superior (probado hasta 3.12)
-- pip actualizado
-
-### 📦 Instalación
-
-```bash
-git clone https://github.com/OAODesarrollador/analisis-descriptivo-streamlit.git
-cd analisis-descriptivo-streamlit
-pip install -r requirements.txt
+```
+Clientes.csv      Productos.csv
+     │                  │
+     │                  ▼
+     │          ┌───────────────┐
+     │          │ Preprocesamiento │
+     │          └───────────────┘
+     │                  │
+     ▼                  ▼
+Ventas.csv ───────────▶ Detalle_Ventas.csv
+          │
+          ▼
+ Integración (Fact Table) → Limpieza → EDA → Visualizaciones → Conclusiones
 ```
 
-### 🚀 Ejecución local
+---
 
+## 💡 Principales Características
+
+✅ **EDA completo y reproducible** — implementado tanto en Jupyter Notebook como en una App Streamlit interactiva.  
+✅ **Detección automática de separadores y encoding** (archivos CSV robustos).  
+✅ **Tipificación y normalización** de datos (fechas, numéricos, categorías).  
+✅ **Validación de integridad** mediante cálculo de `subtotal_calc` y `desvio_importe`.  
+✅ **Integración relacional** entre clientes, ventas, productos y detalle de ventas.  
+✅ **Análisis estadístico descriptivo** (media, mediana, moda, desviación, cuartiles).  
+✅ **Visualizaciones profesionales** (histograma, boxplot, scatter, barras comparativas).  
+✅ **Narrativa explicativa** en lenguaje divulgativo pero con rigor académico.  
+✅ **Descarga automática** de CSV limpios y reporte final en Streamlit.
+
+---
+
+## 📊 Visualizaciones destacadas
+
+| Tipo de gráfico | Propósito | Ejemplo |
+|-----------------|------------|----------|
+| **Histograma** | Distribución del total por ticket | ![Histograma](proyecto_demo2/plots/hist_total_ticket.png) |
+| **Boxplot** | Dispersión e outliers por categoría | ![Boxplot](proyecto_demo2/plots/box_importe_categoria.png) |
+| **Scatterplot** | Relación cantidad–precio unitario | ![Scatter](proyecto_demo2/plots/scatter_cantidad_precio.png) |
+| **Barras** | Ingresos por categoría | ![Barras](proyecto_demo2/plots/bar_ingresos_categoria.png) |
+
+---
+
+## 🧮 Resultados del Análisis
+
+- **Patrón de Pareto (80/20):** unas pocas categorías concentran la mayoría de ingresos.  
+- **Outliers identificados:** valores extremos explicables por ventas especiales o errores.  
+- **Dispersión elevada:** heterogeneidad entre categorías → oportunidad de optimizar precios.  
+- **Correlaciones positivas:** coherencia entre cantidad e importe total.  
+- **Desvíos detectados:** indicador útil para control de calidad del proceso de ventas.
+
+> 💬 *Conclusión metodológica:*  
+> Este proyecto constituye un **ejemplo integral de EDA profesional** — reproducible, documentado y defendible en una presentación técnica o académica.
+
+---
+
+## 🧩 Estructura del Repositorio
+
+```
+📦 AnalisisVentas
+ ┣ 📂 data/                ← Archivos CSV originales
+ ┣ 📂 proyecto_demo2/
+ ┃ ┣ 📂 plots/             ← Gráficos generados (PNG)
+ ┃ ┣ 📂 tablas/            ← Tablas descriptivas (CSV)
+ ┃ ┣ 📜 analisis_completo_demo2.ipynb
+ ┃ ┣ 📜 documentacion_proyecto.md
+ ┃ ┣ 📜 analisis_ventas.py
+ ┃ ┗ 📜 resumen_demo.pptx
+ ┣ 📜 app.py               ← App Streamlit interactiva
+ ┣ 📜 README.md            ← Este documento
+ ┗ 📜 requirements.txt     ← Dependencias del entorno
+```
+
+---
+
+## 🧭 Ejecución del Proyecto
+
+### 🧪 Opción 1 — Notebook interactivo
+```bash
+jupyter notebook analisis_completo_demo2.ipynb
+```
+
+### 🌐 Opción 2 — App Streamlit interactiva
 ```bash
 streamlit run app.py
 ```
 
-Luego abrir [http://localhost:8501](http://localhost:8501) en tu navegador.
+La app permite:
+- Cargar los archivos CSV.  
+- Ver diagnóstico de calidad de datos.  
+- Aplicar limpieza y exportar los datasets limpios.  
+- Generar gráficos descriptivos con interpretación automática.  
+- Descargar reportes y conclusiones finales.
 
 ---
 
-## ☁️ Deploy en Streamlit Cloud
+## 📘 Capturas de la App (Streamlit)
 
-1. Subí este repositorio a tu GitHub.  
-2. Iniciá sesión en [streamlit.io](https://streamlit.io/cloud).  
-3. Elegí **New app → GitHub repo → `main` branch → app.py**.  
-4. Aceptá las dependencias de `requirements.txt`.  
-5. ¡Listo! Tu análisis estará disponible online con URL pública.
+| Paso | Descripción | Vista |
+|------|--------------|-------|
+| 1️⃣ | Diagnóstico de datos originales | ![Step1](https://imgur.com/placeholder1.png) |
+| 2️⃣ | Limpieza automática y exportación | ![Step2](https://imgur.com/placeholder2.png) |
+| 3️⃣ | Análisis descriptivo y gráficos | ![Step3](https://imgur.com/placeholder3.png) |
+| 4️⃣ | Conclusiones finales descargables | ![Step4](https://imgur.com/placeholder4.png) |
 
----
-
-## 🧮 Estructura del proyecto
-
-```
-📦 analisis-descriptivo-streamlit/
- ┣ 📂 data/                 → CSV originales
- ┣ 📂 data_limpios/         → CSV generados tras limpieza
- ┣ 📄 app.py                → Aplicación principal (Streamlit)
- ┣ 📄 requirements.txt      → Dependencias del entorno
- ┣ 📄 README.md             → Este archivo
- ┗ 📜 conclusiones_analisis.txt  → Informe descargable (opcional)
-```
+> 🔧 *Las imágenes pueden personalizarse con capturas reales de tu entorno Streamlit.*
 
 ---
 
-## 🎨 Estilo visual y UX
-- Diseño minimalista y adaptable.
-- Gráficos interactivos con narrativa expandible.
-- Colores suaves, tipografía profesional.
-- Presentación paso a paso: **Datos → Limpieza → Análisis → Conclusiones**.
+## 🧠 Conclusión Final
+
+El proyecto combina **ciencia de datos aplicada, estadística descriptiva avanzada y visualización moderna**, demostrando competencias profesionales en:  
+- Limpieza y preprocesamiento de datos reales.  
+- Interpretación estadística y análisis exploratorio.  
+- Comunicación visual de resultados mediante herramientas interactivas.
+
+> 💼 Ideal para portfolio profesional, docencia o presentaciones académicas.
 
 ---
 
-## 🧠 Conocimientos y herramientas aplicadas
+## 👨‍💻 Autor
 
-| Área | Competencia | Herramientas |
-|------|--------------|--------------|
-| Estadística descriptiva | Distribuciones, asimetría, dispersión, outliers | Pandas, NumPy |
-| Visualización de datos | Análisis visual interpretativo | Matplotlib |
-| Limpieza y preparación | Normalización, parsing de fechas, tipificación | Pandas |
-| Presentación interactiva | UI científica, storytelling visual | Streamlit |
-| Documentación | Comunicación técnica + lenguaje divulgativo | Markdown |
+**Oscar Ortiz Dev Studio™**  
+Desarrollador Full‑Stack & Científico de Datos  
+📍 Argentina | 🌐 [LinkedIn](https://www.linkedin.com/in/oscar-alejandro-ortiz-desarrollador-fullstack/)  
+💬 *Innovación, análisis y visualización aplicada a proyectos reales.*
 
 ---
 
-## 🪄 Ejemplo visual
 
-```
-Distribución del total por ticket
-┌───────────────────────────────┐
-│   📘 Ver interpretación ▼     │
-│   Este gráfico muestra cómo…  │
-└───────────────────────────────┘
-```
-
-*(cada gráfico incluye un expander con explicación divulgativa)*
-
----
-
-## 🧾 Créditos
-
-**Desarrollado por:**  
-👨‍💻 **Oscar Alejandro Ortiz - Dev Studio™**  
-Desarrollador Full Stack | Científico de Datos 
-
-🔗 [LinkedIn](https://www.linkedin.com/in/oscar-alejandro-ortiz-desarrollador-fullstack)  
-💼 [GitHub](https://github.com/OAODesarrollador)  
-📬 [WhatsApp](https://wa.me/543704054127)
-
-> 💬 “Los datos cuentan historias; tu trabajo es darles voz.”
-
----
-
-## 🎉 ¡Gracias por visitar mi proyecto  !
