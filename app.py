@@ -1,3 +1,32 @@
+import os
+# === [AUTO-ADDED] Export paths & helpers (non-breaking) ===
+try:
+    BASE_DIR = os.path.dirname(__file__)
+except NameError:
+    import os as _os
+    BASE_DIR = _os.path.dirname(__file__)
+OUT_DIR = os.path.join(BASE_DIR, "proyecto_Archivos_definitivos")
+PLOTS_DIR = os.path.join(OUT_DIR, "plots")
+TABLES_DIR = os.path.join(OUT_DIR, "tablas")
+os.makedirs(PLOTS_DIR, exist_ok=True)
+os.makedirs(TABLES_DIR, exist_ok=True)
+
+def guardar_png(fig, nombre_sin_ext):
+    try:
+        path = os.path.join(PLOTS_DIR, f"{nombre_sin_ext}.png")
+        fig.savefig(path, bbox_inches="tight")
+        return path
+    except Exception as _e:
+        return None
+
+def guardar_csv(df, nombre_sin_ext, index=False):
+    try:
+        path = os.path.join(TABLES_DIR, f"{nombre_sin_ext}.csv")
+        df.to_csv(path, index=index)
+        return path
+    except Exception as _e:
+        return None
+# === [END AUTO-ADDED] ===
 
 import os
 import io
@@ -326,6 +355,10 @@ if ticket_totals is not None and ticket_totals.notna().any():
     ax.set_ylabel("Frecuencia")
     ax.grid(axis="y", linestyle="--", alpha=0.6)
     st.pyplot(fig, use_container_width=True)
+    try:
+        guardar_png(fig, "hist_total_ticket")
+    except Exception:
+        pass
 
     with st.expander("📘 Interpretación y definición estadística"):
         st.markdown("""
@@ -342,91 +375,119 @@ Permite entender si la mayoría de las ventas son de montos bajos, medios o alto
 else:
     st.info("No se pudo construir el histograma (no hay columna 'total' ni base válida para reconstruir).")
 
+
 # --- BOXPLOT: IMPORTE vs CATEGORÍA ---
 st.subheader("3.2 Variabilidad de importe por categoría (Boxplot)")
-if cat_col and "importe" in df.columns:
-    sub = df[[cat_col, "importe"]].dropna()
-    if not sub.empty:
-        cats = list(sub[cat_col].astype(str).unique())
-        data = [to_num(sub.loc[sub[cat_col] == c, "importe"]).dropna() for c in cats]
-        fig, ax = plt.subplots(figsize=(max(7, len(cats)*0.7), 5))
-        ax.boxplot(data, labels=cats, patch_artist=True,
-                   boxprops=dict(facecolor="lightblue"),
-                   medianprops=dict(color="navy", linewidth=2))
-        plt.xticks(rotation=45, ha="right")
-        ax.set_title("Boxplot de importe por categoría", weight="bold")
-        ax.set_ylabel("Importe")
-        st.pyplot(fig, use_container_width=True)
 
-        with st.expander("📘 Interpretación y definición estadística"):
-            st.markdown(f"""
+if cat_col and "importe" in df.columns:
+    sub = df[[cat_col, "importe"]].copy()
+    sub["importe"] = to_num(sub["importe"])
+    sub[cat_col] = sub[cat_col].astype(str).str.strip()
+    sub = sub.dropna(subset=[cat_col, "importe"])
+
+    if not sub.empty and sub["importe"].notna().any():
+        cats = list(sub[cat_col].unique().astype(str))
+        data = [sub.loc[sub[cat_col] == c, "importe"].dropna() for c in cats]
+        data_non_empty = [(c, s) for c, s in zip(cats, data) if len(s) > 0]
+
+        if len(data_non_empty) > 0:
+            cats_plot, data_plot = zip(*data_non_empty)
+            fig, ax = plt.subplots(figsize=(max(7, len(cats_plot) * 0.7), 5))
+            ax.boxplot(
+                data_plot,
+                labels=cats_plot,
+                patch_artist=True,
+                boxprops=dict(facecolor="lightblue"),
+                medianprops=dict(color="navy", linewidth=2),
+            )
+            ax.set_title("Boxplot de importe por categoría", weight="bold")
+            ax.set_ylabel("Importe")
+            plt.xticks(rotation=45, ha="right")
+            st.pyplot(fig, use_container_width=True)
+            try:
+                guardar_png(fig, "box_importe_categoria")
+            except Exception:
+                pass
+
+            with st.expander("📘 Interpretación y definición estadística"):
+                st.markdown(f"""
 **¿Qué estoy viendo?**  
-Cada caja resume cómo se distribuyen los importes dentro de una **categoría** (como un “resumen visual”):  
+Cada caja resume cómo se distribuyen los importes dentro de una **categoría** (un “resumen visual”):  
 - La **línea del medio** es la **mediana** (valor típico).  
-- La **caja** abarca el rango donde cae la mitad de los importes.  
+- La **caja** abarca el rango donde cae la mitad de los importes (IQR).
 - Los puntos alejados son **valores atípicos**.
 
 **¿Por qué es útil?**  
-Permite comparar **variabilidad** y **valores típicos** entre categorías de producto.
+Permite comparar **variabilidad** y **valores típicos** entre categorías.
 
 **¿Cómo leer este gráfico en ventas?**  
-- Cajas más **altas**: mayor dispersión de importes (precios variados o tickets muy distintos).  
+- Cajas más **altas**: mayor dispersión (precios/importe de tickets más heterogéneos).  
 - Medianas **altas**: categoría con tickets usualmente más caros.  
-- Muchos puntos sueltos: presencia de ventas excepcionales.
-            """)
+- Muchos puntos sueltos: presencia de ventas excepcionales que conviene auditar o explicar.
+                """)
+        else:
+            st.info("No hay datos suficientes para boxplot (todas las categorías quedaron vacías tras la limpieza).")
     else:
-        st.info("No hay datos suficientes para boxplot.")
+        st.info("No hay datos suficientes para boxplot (importe no numérico o sin valores válidos).")
 else:
     st.warning("No se detectó columna de categoría (`*categoria*`) o `importe` en el integrado.")
 
 # --- SCATTER: CANTIDAD vs PRECIO UNITARIO ---
-st.subheader("3.3 Relación cantidad vs. precio unitario (Dispersión)")
+st.subheader("3.3 Relación cantidad vs precio unitario (Dispersión)")
+
 if {"cantidad", "precio_unitario"}.issubset(df.columns):
-    x = to_num(df["cantidad"])
-    y = to_num(df["precio_unitario"])
+    x = pd.to_numeric(df["cantidad"], errors="coerce")
+    y = pd.to_numeric(df["precio_unitario"], errors="coerce")
     mask = x.notna() & y.notna()
-    if mask.any():
+    if mask.sum() > 0:
         fig, ax = plt.subplots(figsize=(7, 5))
-        ax.scatter(x[mask], y[mask], alpha=0.6)
+        ax.scatter(x[mask], y[mask], alpha=0.6, color="royalblue")
         ax.set_xlabel("Cantidad")
         ax.set_ylabel("Precio unitario")
         ax.set_title("Dispersión: cantidad vs precio unitario", weight="bold")
         ax.grid(alpha=0.3)
         st.pyplot(fig, use_container_width=True)
+        try:
+            guardar_png(fig, "scatter_cantidad_precio")
+        except Exception:
+            pass
 
         with st.expander("📘 Interpretación y definición estadística"):
-            st.markdown("""
+            st.markdown(f"""
 **¿Qué estoy viendo?**  
-Cada punto es una venta (o ítem): su posición muestra cuánta **cantidad** se vendió y a qué **precio unitario**.
+Cada punto representa una venta individual con su **cantidad** y **precio unitario**.
 
 **¿Por qué es útil?**  
-Ayuda a notar **patrones**: si al subir el precio baja la cantidad, si hay clústeres (familias de productos) o casos raros.
+Permite observar relaciones entre el precio y la cantidad vendida.
 
-**¿Cómo leer este gráfico en ventas?**  
-- **Nube inclinada hacia abajo**: cuando el precio sube, se vende menos (típico).  
-- **Puntos muy separados**: productos con comportamientos distintos (segmentos).  
-- **Grupos definidos**: oportunidades para promos dirigidas o segmentación.
+**Interpretación típica:**  
+- **Tendencia descendente:** descuentos por volumen.  
+- **Tendencia ascendente:** productos premium o agrupaciones.  
+- **Nube dispersa:** independencia entre precio y cantidad.
             """)
     else:
-        st.info("No hay pares válidos para dispersión.")
+        st.info("No hay pares válidos para dispersión (todas las filas contienen nulos o no numéricos).")
 else:
-    st.warning("Falta `cantidad` o `precio_unitario` en el integrado.")
+    st.warning("Faltan columnas 'cantidad' o 'precio_unitario' en el integrado.")
 
 # --- BARRAS: INGRESOS POR CATEGORÍA ---
 st.subheader("3.4 Ingresos totales por categoría (Barras)")
+
 if cat_col and "importe" in df.columns:
-    serie = df.groupby(cat_col)["importe"].sum().sort_values(ascending=False)
+    df["importe"] = pd.to_numeric(df["importe"], errors="coerce")
+    serie = df.groupby(cat_col, dropna=True)["importe"].sum().sort_values(ascending=False)
+    serie = serie[serie > 0]
     if not serie.empty:
         num_cats = len(serie)
         fig, ax = plt.subplots(figsize=(10, max(4, num_cats * 0.42)))
         if num_cats > 8:
-            ax.barh(serie.index.astype(str), serie.values)
+            ax.barh(serie.index.astype(str), serie.values, color="teal")
             ax.invert_yaxis()
             ax.set_xlabel("Ingresos totales"); ax.set_ylabel("Categoría")
             for i, v in enumerate(serie.values):
                 ax.text(v, i, f"{v:,.0f}", va="center", ha="left", fontsize=8)
         else:
-            ax.bar(serie.index.astype(str), serie.values)
+            ax.bar(serie.index.astype(str), serie.values, color="teal")
             plt.xticks(rotation=45, ha="right")
             ax.set_ylabel("Ingresos totales")
             for i, v in enumerate(serie.values):
@@ -434,28 +495,30 @@ if cat_col and "importe" in df.columns:
         ax.set_title("Ingresos por categoría", weight="bold")
         ax.grid(axis="x", linestyle="--", alpha=0.55)
         st.pyplot(fig, use_container_width=True)
+        try:
+            guardar_png(fig, "bar_ingresos_categoria")
+        except Exception:
+            pass
 
         with st.expander("📘 Interpretación y definición estadística"):
-            st.markdown("""
+            st.markdown(f"""
 **¿Qué estoy viendo?**  
-Cada barra representa cuánto **ingreso total** generó una categoría.
+Cada barra muestra los **ingresos totales** por categoría.
 
 **¿Por qué es útil?**  
-Permite identificar **categorías líderes** que explican gran parte de la facturación y aquellas que necesitan atención.
+Permite identificar las categorías que generan más ingresos.
 
-**¿Cómo leer este gráfico en ventas?**  
-- Barras **más largas/altas**: categorías con mayor aportación al negocio.  
-- Caídas marcadas entre barras: concentración en pocas categorías (posible dependencia de productos estrella).  
-- Útil para priorizar stock, promociones y negociación con proveedores.
+**Cómo interpretarlo:**  
+- Barras más altas → categorías más rentables.  
+- Concentración fuerte → comportamiento tipo Pareto (80/20).  
+- Diferencias grandes → potencial para equilibrar mix de productos.
             """)
     else:
-        st.info("Serie vacía para barras.")
+        st.info("No hay datos válidos para graficar barras (todos los importes son nulos o cero).")
 else:
-    st.warning("No se detectó columna de categoría (`*categoria*`) o `importe` para el gráfico de barras.")
-
-st.markdown("---")
-
-# ========================= PASO 4 – CONCLUSIONES =========================
+    st.warning("No se detectó columna 'categoria' o 'importe' en el integrado.")
+# ===
+#====================== PASO 4 – CONCLUSIONES =========================
 st.header("4) 🧾 Conclusiones del análisis")
 conclusiones_txt = f"""
 Informe de conclusiones — {datetime.now().strftime('%Y-%m-%d %H:%M')}
@@ -493,3 +556,25 @@ st.download_button(
     mime="text/plain",
 )
 st.caption("Fin del informe. Lenguaje divulgativo para equipos no técnicos, con rigor de ciencia de datos.")
+
+
+
+# === [AUTO-ADDED] CSV exports (safe) ===
+try:
+    if 'ticket' in locals():
+        if set(['items','total']).issubset(ticket.columns):
+            guardar_csv(ticket[['items','total']].describe().T, 'desc_ticket')
+except Exception:
+    pass
+
+try:
+    if 'df' in locals():
+        cols = [c for c in ['cantidad','precio_unitario','importe'] if c in df.columns]
+        if cols:
+            guardar_csv(df[cols].describe().T, 'desc_detalle')
+        if 'categoria' in df.columns and 'importe' in df.columns:
+            _res = df.groupby('categoria')['importe'].sum().sort_values(ascending=False).reset_index()
+            guardar_csv(_res, 'resumen_categoria', index=False)
+except Exception:
+    pass
+# === [END AUTO-ADDED] ===
